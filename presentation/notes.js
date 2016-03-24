@@ -33,7 +33,6 @@ let slide10 = `
     <li>1 light year is nearly 6 trillion miles</li>
     <li>It takes 8 minutes for light to travel from the Sun to the earth</li>
     <li>If takes about 100,000 years for light to travel across the Milky Way Galaxy.</li>
-    <li>As light waves travel, they stretch out, leaving the visible spectrum and becoming infrared.</li>
   </ul>
 `;
 
@@ -56,6 +55,7 @@ let slide12 = `
 
 let slide13 = `
   <ul>
+    <li>Another amazing thing is that</li>
     <li>When a planet passes in front of a star, the starlight passes through the planet's atmosphere.</li>
     <li>Astronomers will be able to capture images with the JWST that allow them to determine atmospheric conditions</li>
     <li>and look for other earth like planets.</li>
@@ -83,6 +83,14 @@ let slide16 = `
   </ul>
 `;
 
+let slide17 = `
+  <ul>
+    <li>It's a massive effort. </li>
+    <li>Everyone involved has to do their job perfectly.</li>
+    <li>because if someone makes a mistake</li>
+    <li>Once it's launched, it's orbit is too far away from Earth for repairs to be made.</li>
+  </ul>
+`;
 
 
 
@@ -93,9 +101,9 @@ const notes = {
   // Titles
   slide2: "titles",
   // My thoughts
-  slide3: "So the most interesting thing I saw at SXSW wasn't some epic science-fiction vision into the future. I was an insane look into the past.",
+  slide3: "So the most interesting thing I saw at SXSW wasn't some epic science-fiction vision into the future. I was an insane look into the past. But we'll get to that.",
   // Background
-  slide4: "The JWST is being build in NASA's Goddard Space Center in Maryland. This image is taken from the webcam so this is happening right now.",
+  slide4: "The JWST is being build in NASA's Goddard Space Center in Maryland. This image is taken from the web cam so this is happening right now.",
   slide5: slide5,
   slide6: slide6,
   slide7: "Also interestingly, it won't actually orbit the earth, it'll stay fixed in the same spot in relation to the earth and sun.",
@@ -108,7 +116,7 @@ const notes = {
   slide14: "This is an image taken by the Hubble of stars within our galaxy, which contains a couple hundred billion stars.",
   slide15: slide15,
   slide16: slide16,
-  slide17: "It's a massive effort. Once it's launched, it's orbit is too far away from Earth for repairs to be made.",
+  slide17: slide17,
   slide18: "Music/outro",
   slide19: "Thanks",
   slide20: "Info/lanks"
