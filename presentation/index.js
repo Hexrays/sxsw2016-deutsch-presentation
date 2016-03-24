@@ -42,6 +42,7 @@ require("spectacle/lib/themes/default/index.css");
 const images = {
   carina: require("../assets/carina.jpg"),
   hudf: require("../assets/hubble-ultra-deep-field.jpg"),
+  scale: require("../assets/scale-v-hubble.gif"),
   jwst: require("../assets/jwst.jpg"),
   markdown: require("../assets/markdown.png")
 };
@@ -49,7 +50,9 @@ const images = {
 preloader(images);
 
 const theme = createTheme({
-  primary: "#ff4081"
+  primary: "#F35733",
+  secondary: "#00D5DC",
+  tertiary: "#E6E5E5"
 });
 
 const a = new Audio("http://hexrays.at/assets/miles.m4a");
@@ -72,6 +75,21 @@ function fadeOut() {
   }
 }
 
+function fadeIn() {
+  let vol = a.volume;
+  // Reduce volume by 0.05 as long as it is above 0
+  // This works as long as you start with a multiple of 0.05!
+  if (vol < 1) {
+    vol += 0.05;
+    // limit to 2 decimal places
+    // also converts to string, works ok
+    a.volume = vol.toFixed(2);
+  } else {
+    // Stop the setInterval when 0 is reached
+    window.clearInterval(intervalID);
+  }
+}
+
 function onAudioTimeUpdate() {
   if (a.currentTime >= 36 && isPlaying) {
     isPlaying = false;
@@ -91,7 +109,10 @@ export default class Presentation extends React.Component {
     a.addEventListener("timeupdate", onAudioTimeUpdate, false);
 
     if (window.location.search !== "?presenter" && window.location.pathname === "/0") {
+      a.currentTime = 0.5;
+      a.volume = 0;
       a.play();
+      intervalID = setInterval(() => {fadeIn() }, 250);
       isPlaying = true;
     }
     // this.startSlideshow();
@@ -121,9 +142,13 @@ export default class Presentation extends React.Component {
       <Spectacle theme={theme} >
         <Deck transition={["zoom", "slide"]} transitionDuration={500}>
 
-          <Slide transition={["zoom"]} bgImage={images.carina.replace("/", "")}>
+          <Slide notes={notes.slide1} transition={["zoom", "fade"]} bgColor="black">
+
+          </Slide>
+
+          <Slide notes={notes.slide2} transition={["zoom"]} bgImage={images.carina.replace("/", "")}>
             <Appear fid="1">
-              <Heading size={1} fit caps lineHeight={1} textColor="white">
+              <Heading size={1} fit caps lineHeight={1} textColor="tertiary">
                 Extreme Science
               </Heading>
             </Appear>
@@ -134,29 +159,34 @@ export default class Presentation extends React.Component {
             </Appear>
           </Slide>
 
-          <Slide transition={["slide"]} bgImage={images.hudf.replace("/", "")} notes={notes.slide2}>
-            <Heading size={2} caps fit textColor="white" textFont="primary">
+          <Slide notes={notes.slide3} transition={["slide"]} bgImage={images.hudf.replace("/", "")} notes={notes.slide3}>
+            <Image src={images.jwst.replace("/", "")} margin="0px auto 40px" height="500px"/>
+            <Heading size={2} caps fit textColor="tertiary" textFont="primary">
               So the most interesting thing I saw at SXSW
             </Heading>
-            <Heading size={2} caps fit textColor="orange" textFont="primary">
+            <Heading size={2} caps fit textColor="primary" textFont="primary">
               wasn't some epic science-fiction vision into the future.
             </Heading>
-            <Heading size={2} caps fit textColor="white" textFont="primary">
+            <Heading size={2} caps fit textColor="tertiary" textFont="primary">
               I was an insane look into the past.
             </Heading>
-            <Heading size={2} caps fit textColor="white" textFont="primary">
+            <Heading size={2} caps fit textColor="tertiary" textFont="primary">
               But we'll get there...
             </Heading>
           </Slide>
 
-          <Slide transition={["zoom", "fade"]} bgColor="black" notes="<ul><li>talk about that</li><li>and that</li></ul>">
-            <Image src={images.jwst.replace("/", "")} margin="0px auto 40px" height="500px"/>
+          <Slide transition={["zoom", "fade"]} bgImage="http://jwst.nasa.gov/WebbCamWide/CLNRMR-800px.jpg" notes={notes.slide4}>
+
+          </Slide>
+
+          <Slide notes={notes.slide5} transition={["zoom", "fade"]} bgColor="black" >
             <Heading size={1} caps fit textColor="white" textFont="primary">
               The James Webb Space Telescope is the successor to the Hubble.
             </Heading>
+            <Image src={images.scale.replace("/", "")} margin="0px auto 40px" height="255px"/>
           </Slide>
 
-          <Slide transition={["slide"]} bgImage={images.hudf.replace("/", "")} bgDarken={0.5}>
+          <Slide notes={notes.slide6} transition={["slide"]} bgImage={images.hudf.replace("/", "")} bgDarken={0.5}>
             <Appear fid="1">
               <Heading size={1} caps fit textColor="primary">
                 Full Width
@@ -174,7 +204,7 @@ export default class Presentation extends React.Component {
             </Appear>
           </Slide>
 
-          <Slide transition={["zoom", "fade"]} bgColor="primary">
+          <Slide notes={notes.slide7} transition={["zoom", "fade"]} bgColor="primary">
             <Heading caps fit>Flexible Layouts</Heading>
             <Layout>
               <Fill>
@@ -190,14 +220,14 @@ export default class Presentation extends React.Component {
             </Layout>
           </Slide>
 
-          <Slide transition={["slide"]} bgColor="black">
+          <Slide notes={notes.slide8} transition={["slide"]} bgColor="black">
             <BlockQuote>
               <Quote>Wonderfully formatted quotes</Quote>
               <Cite>Ken Wheeler</Cite>
             </BlockQuote>
           </Slide>
 
-          <Slide transition={["spin", "zoom"]} bgColor="tertiary">
+          <Slide notes={notes.slide9} transition={["spin", "zoom"]} bgColor="tertiary">
             <Heading caps fit size={1} textColor="primary">
               Inline Markdown
             </Heading>
@@ -213,7 +243,7 @@ You can write inline images, [Markdown Links](http://commonmark.org), paragraph 
             </Markdown>
           </Slide>
 
-          <Slide transition={["slide", "spin"]} bgColor="primary">
+          <Slide notes={notes.slide10} transition={["slide", "spin"]} bgColor="primary">
             <Heading caps fit size={1} textColor="tertiary">
               Smooth
             </Heading>
@@ -222,7 +252,7 @@ You can write inline images, [Markdown Links](http://commonmark.org), paragraph 
             </Heading>
           </Slide>
 
-          <Slide transition={["fade"]} bgColor="secondary" textColor="primary">
+          <Slide notes={notes.slide11} transition={["fade"]} bgColor="secondary" textColor="primary">
             <List>
               <Appear><ListItem>Inline style based theme system</ListItem></Appear>
               <Appear><ListItem>Autofit text</ListItem></Appear>
@@ -233,14 +263,64 @@ You can write inline images, [Markdown Links](http://commonmark.org), paragraph 
             </List>
           </Slide>
 
-          <Slide transition={["slide"]} bgColor="primary">
+          <Slide notes={notes.slide12} transition={["slide"]} bgColor="primary">
             <Heading size={1} caps fit textColor="tertiary">
               Your presentations are interactive
             </Heading>
             <Interactive/>
           </Slide>
 
-          <Slide transition={["spin", "slide"]} bgColor="tertiary">
+          <Slide notes={notes.slide13} transition={["slide"]} bgColor="primary">
+            <Heading size={1} caps fit textColor="tertiary">
+              Your presentations are interactive
+            </Heading>
+            <Interactive/>
+          </Slide>
+
+          <Slide notes={notes.slide14} transition={["slide"]} bgColor="primary">
+            <Heading size={1} caps fit textColor="tertiary">
+              Your presentations are interactive
+            </Heading>
+            <Interactive/>
+          </Slide>
+
+          <Slide notes={notes.slide15} transition={["slide"]} bgColor="primary">
+            <Heading size={1} caps fit textColor="tertiary">
+              Your presentations are interactive
+            </Heading>
+            <Interactive/>
+          </Slide>
+
+          <Slide notes={notes.slide16} transition={["slide"]} bgColor="primary">
+            <Heading size={1} caps fit textColor="tertiary">
+              Your presentations are interactive
+            </Heading>
+            <Interactive/>
+          </Slide>
+
+          <Slide notes={notes.slide17} transition={["slide"]} bgColor="primary">
+            <Heading size={1} caps fit textColor="tertiary">
+              Your presentations are interactive
+            </Heading>
+            <Interactive/>
+          </Slide>
+
+          <Slide notes={notes.slide18} transition={["slide"]} bgColor="primary">
+            <Heading size={1} caps fit textColor="tertiary">
+              Your presentations are interactive
+            </Heading>
+            <Interactive/>
+          </Slide>
+
+          <Slide notes={notes.slide19} transition={["slide"]} bgColor="primary">
+            <Heading size={1} caps fit textColor="tertiary">
+              Your presentations are interactive
+            </Heading>
+            <Interactive/>
+          </Slide>
+
+
+          <Slide notes={notes.slide20} transition={["spin", "slide"]} bgColor="tertiary">
             <Heading size={1} caps fit lineHeight={1.5} textColor="primary">
               Made with love in Seattle by
             </Heading>
