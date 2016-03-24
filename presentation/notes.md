@@ -16,6 +16,10 @@ Extreme Science. NASA's James Webb Space Telescope
 Developed at NASA's Goddard Space Center
 http://jwst.nasa.gov/WebbCamWide/CLNRMR-800px.jpg
 
+So the most interesting thing I saw at SXSW wasn't some epic science-fiction vision into the future. I was an insane look into the past. More than 13.5 billion years into the past.
+
+But we'll get there...
+
 
 The JWST is the successor to the Hubble
 
@@ -30,7 +34,7 @@ unfold.gif
 unfold.jpg
 
 Beryllium mirrors coated with gold for superior reflection.
-nearly perfect> if each individual mirror was scaled to the size of the US, and the highest point in the us being about 14,000 feet, the highest bump on this lens would be less than 1 inch high. not to mention that the nerds building them have to account for them changing shape once they cool down to -400 degs Fahrenheit.
+nearly perfect> if each individual mirror was scaled to the size of the US, and the highest point in the us being about 20,000 feet, the highest bump on this lens would be less than 1 inch high. not to mention that the nerds building them have to account for them changing shape once they cool down to -400 degs Fahrenheit.
 
 Also interestingly, it won't actually orbit the earth, it'll stay fixed in the same spot in relation to the earth and sun.
 orbit.jpg
@@ -52,13 +56,15 @@ Milky Way Galaxy contains a couple hundred billion stars
 This is part of an image of the Hubble Ultra Deep Field
 Every point of light is a galaxy filled with billions of stars
 
+Some nerd stuff:
+1 light year is nearly 6 trillion miles
+Speed of light is approx ‎671 million mph
+
 It takes 8 minutes for light to travel from the Sun to the earth
 
 It takes 100,000 years for light to travel across the Milky Way Galaxy.
 
-1 light year is nearly 6 trillion miles
 
-Speed of light is approx ‎671 million mph
 
 The JWST will see back in time to the very first galaxies that were born after the big bang over 13.5 billion years into the past
 

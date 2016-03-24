@@ -32,6 +32,7 @@ import createTheme from "spectacle/lib/themes/default";
 import Interactive from "../assets/interactive";
 
 import Podium from "../utils/helpers";
+import notes from "./notes";
 
 // Require CSS
 require("normalize.css");
@@ -39,12 +40,9 @@ require("spectacle/lib/themes/default/index.css");
 
 
 const images = {
-  city: require("../assets/city.jpg"),
-  kat: require("../assets/kat.png"),
-  logo: require("../assets/formidable-logo.svg"),
   carina: require("../assets/carina.jpg"),
   hudf: require("../assets/hubble-ultra-deep-field.jpg"),
-  // miles: require("../assets/miles.m4a"),
+  jwst: require("../assets/jwst.jpg"),
   markdown: require("../assets/markdown.png")
 };
 
@@ -77,13 +75,9 @@ function fadeOut() {
 function onAudioTimeUpdate() {
   if (a.currentTime >= 36 && isPlaying) {
     isPlaying = false;
-    intervalID = setInterval(() => {fadeOut()}, 100);
+    intervalID = setInterval(() => {fadeOut() }, 100);
   }
 }
-
-const notes = {
-  slide2: "So the most interesting thing I saw at SXSW wasn't some epic science-fiction vision into the future. I was an insane look into the past."
-};
 
 export default class Presentation extends React.Component {
   constructor(props) {
@@ -94,13 +88,13 @@ export default class Presentation extends React.Component {
   }
 
   componentDidMount() {
-    // this.startSlideshow();
+    a.addEventListener("timeupdate", onAudioTimeUpdate, false);
 
-    a.addEventListener('timeupdate', onAudioTimeUpdate, false);
-    if(window.location.search !== "?presenter") {
+    if (window.location.search !== "?presenter" && window.location.pathname === "/0") {
       a.play();
       isPlaying = true;
     }
+    // this.startSlideshow();
   }
 
   startSlideshow() {
@@ -108,10 +102,9 @@ export default class Presentation extends React.Component {
 
     this.interval = window.setInterval(() => {
       Podium.keydown(39);
-      console.log("timeout");
     }, 2000);
 
-    document.addEventListener('keypress', this.onKeyDown, false);
+    document.addEventListener("keypress", this.onKeyDown, false);
   }
 
   stopSlideShow() {
@@ -156,15 +149,14 @@ export default class Presentation extends React.Component {
             </Heading>
           </Slide>
 
-          <Slide transition={["zoom", "fade"]} bgColor="primary" notes="<ul><li>talk about that</li><li>and that</li></ul>">
-            <CodePane
-              lang="jsx"
-              source={require("raw!../assets/deck.example")}
-              margin="20px auto"
-            />
+          <Slide transition={["zoom", "fade"]} bgColor="black" notes="<ul><li>talk about that</li><li>and that</li></ul>">
+            <Image src={images.jwst.replace("/", "")} margin="0px auto 40px" height="500px"/>
+            <Heading size={1} caps fit textColor="white" textFont="primary">
+              The James Webb Space Telescope is the successor to the Hubble.
+            </Heading>
           </Slide>
 
-          <Slide transition={["slide"]} bgImage={images.city.replace("/", "")} bgDarken={0.5}>
+          <Slide transition={["slide"]} bgImage={images.hudf.replace("/", "")} bgDarken={0.5}>
             <Appear fid="1">
               <Heading size={1} caps fit textColor="primary">
                 Full Width
@@ -252,7 +244,7 @@ You can write inline images, [Markdown Links](http://commonmark.org), paragraph 
             <Heading size={1} caps fit lineHeight={1.5} textColor="primary">
               Made with love in Seattle by
             </Heading>
-            <Link href="http://www.formidablelabs.com"><Image width="100%" src={images.logo}/></Link>
+            <Link href="http://www.formidablelabs.com">fl</Link>
           </Slide>
 
         </Deck>
