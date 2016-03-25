@@ -78,7 +78,7 @@ const youTubeOpts = {
   }
 }
 
-const a = new Audio("http://hexrays.at/assets/miles.m4a");
+let a;
 let isPlaying = false;
 let intervalID;
 
@@ -137,9 +137,10 @@ export default class Presentation extends React.Component {
   }
 
   componentDidMount() {
-    a.addEventListener("timeupdate", onAudioTimeUpdate, false);
 
     if (window.location.search !== "?presenter" && window.location.pathname === "/0") {
+      a = new Audio("http://hexrays.at/assets/miles.m4a")
+      a.addEventListener("timeupdate", onAudioTimeUpdate, false);
       a.currentTime = 0.5;
       a.volume = 0;
       a.play();
@@ -172,8 +173,7 @@ export default class Presentation extends React.Component {
       <Spectacle theme={theme} >
         <Deck transition={["zoom", "slide"]} transitionDuration={500}>
 
-          <Slide notes={notes.slide1} transition={["zoom", "fade"]} bgColor="black">
-
+          <Slide notes={notes.slide1} transition={["zoom", "fade"]} bgImage={images.hudf.replace("/", "")} bgDarken={0.75}>
           </Slide>
 
           <Slide notes={notes.slide2} transition={["zoom"]} bgImage={images.carina.replace("/", "")}>
